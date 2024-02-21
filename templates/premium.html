@@ -1,0 +1,7 @@
+{% extends 'base.html'%}{% block content %}
+<h1>Go for lifetime premium plan!</h1>
+<h2>Unlock posibility to add task without limits!</h2>
+<form action="{{ url_for('premium') }}" method="post" class="login-register">
+    <button type="submit">Pay for premium</button>
+</form>
+{% endblock %}

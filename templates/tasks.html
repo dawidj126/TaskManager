@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<h1>To-Do List for {{ name }}</h1> 
+<h2>By clicking at your task you could forward it to different user</h2>
+<div class="input-container">
+    <form action="{{ url_for('add_task') }}" method="POST" class="add-form">
+        <input type="text" id="taskInput" name="content" placeholder="Content" required>
+        <button type="submit" id="add">Add</button>
+    </form>
+</div>
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+         <p>{{ message }}</p>  
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+<ul id="taskList">
+{% if tasks %}
+{% for task in tasks %}
+<li><a href="{{ url_for('forward', id=task.id) }}">{{ task.content }}</a><a href="{{ url_for('delete_task', id=task.id) }}"><button id="remove">Remove</button></a></li>
+{% endfor %}
+{% endif %}
+</ul>
+{% endblock %}

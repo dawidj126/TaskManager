@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block content %}
+<form action="{{ url_for('login') }}" method="post" class="login-register" onsubmit="return validateLoginForm()">
+    <input type="text" name="email" id="email" placeholder="Email" required>
+    <span id="emailError" class="error"></span>
+
+    <input type="password" name="password" id="password" placeholder="Password" required>
+    <span id="passwordError" class="error"></span>
+
+    <button type="submit">Let me in.</button>
+</form>
+
+<script>
+    function validateLoginForm() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            document.getElementById('emailError').innerHTML = 'Enter a valid email address.';
+            return false;
+        } else {
+            document.getElementById('emailError').innerHTML = '';
+        }
+
+        if (password.length < 6) {
+            document.getElementById('passwordError').innerHTML = 'Password must be at least 6 characters.';
+            return false;
+        } else {
+            document.getElementById('passwordError').innerHTML = '';
+        }
+
+        return true;
+    }
+</script>
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+         <p>{{ message }}</p>  
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+{% endblock %}

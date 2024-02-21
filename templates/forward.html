@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block content %}
+<form action="{{ url_for('forward', id=id) }}" method="post" class="login-register">
+    <input type="email" name="email" id="email" placeholder="Email" required>
+    <button type="submit">Forward task</button>
+</form>
+{% endblock %}

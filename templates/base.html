@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/id.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/class.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/images/icon.ico') }}">
+  </head>
+
+  <body>
+    <main>
+    <header>
+        <div class="logo">Task Manager</div>
+        <nav>
+          {% if name %}
+          {% if plan == 0%}
+            <a href="{{ url_for('premium') }}">Go for premium plan</a>
+          {% else %}
+            <p id="premium">You are premium user</p>
+          {% endif %}
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('statistics') }}">Statistics</a>
+            <a href="{{ url_for('password') }}">Change password</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+          {% else %}
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+    <div class="container">
+    {% block content %} {% endblock %}
+    </div>
+  </main>
+    <footer>
+      &copy; 2024 Task Manager. All rights reserved.
+    </footer>
+</body>
+</html>

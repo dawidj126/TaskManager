@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Zapanuj nad zadaniami w pracy.
+Wypróbuj prosty program do
+zarządania zadaniami.</h2>
+<h3 style="text-align:center;">Zarejestruj się już teraz!</h3>
+<div id="div-but">
+<a href="{{ url_for('register') }}" id="reg-but">Register</a>
+</div>
+<h3 style="text-align:center;">Wizualizacja listy zadań użytkownika</h3>
+<div id="div-zdj">
+<img src="{{url_for('static', filename="/images/test.png")}}" alt="zdj" id="zdj">
+</div>
+{% endblock %}

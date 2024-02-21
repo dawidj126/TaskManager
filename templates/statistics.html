@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% block content %}
+<h2>Statistics for today:</h2>
+{% if limit > 20 %}
+<h3>You have no limits. Enjoy your premium plan :)</h3>
+{% else%}
+<h3>Current limit: {{ limit }}</h3>
+{% endif %}
+<h3>Numer of actual tasks: {{ tasks }}</h3>
+<div id="bar">
+    <div id="filler"></div>
+    <input type="number" value="{{ tasks }}" id="task-value" style="display:none;">
+    <input type="number" value="{{ limit }}" id="task-limit" style="display:none;">
+</div>
+<script>
+    var value = document.getElementById('task-value').value; 
+    var limit = document.getElementById('task-limit').value;
+
+    function updateBar() {
+        var bar = document.getElementById('filler');
+        var percentage = (value / limit) * 100;
+        bar.style.width = percentage + '%';
+    }
+
+    updateBar();
+</script>
+{% endblock %}
